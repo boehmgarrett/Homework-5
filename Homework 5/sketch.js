@@ -102,7 +102,11 @@ function draw()
     if(dist(imageX1, imageY1, 900, 300) < animations.width / 2 + pizza.width / 2) {
         pizza = null;
     }
-
+    let d = dist(animations.x, animations.y, pizza.x, pizza.y);
+    if (d < animations.size / 2 + pizza.size / 2) {
+      // If collision detected, make item disappear
+      pizza.visible = false;
+    }
 }
 
 function timeIt() {
@@ -148,19 +152,4 @@ function moveEnemy()
 
 function preload() {
     pizza = loadImage("./images/Pizza.png");
-}
-function checkCollision(x,y,w,h, x2,y2,w2,h2)
-{
-  
-   if (
-       x - w/2 < x2 + w2/2 &&
-       x + w2/2 > x2 -w/2 &&
-       y - h2/2 < y2 + h/2 &&
-       y + h2/2 > y2 - h/2
-   
-   ){
-    return true;
-   } else {
-    return false;
-   }
 }
